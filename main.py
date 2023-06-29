@@ -11,12 +11,12 @@ connector = Connector()
 #    print(f"puuid:          {summoner['puuid']}")
 #    print("-")
 
-async def Sell(connection,bSellNotOwnedHero=False,bSellHaveMasteryToken=False):
+async def Sell(connection,bSellNotOwnedHero=False,bSellMasteryTokenHero=False):
   loot = await connection.request('GET', '/lol-loot/v1/player-loot')
   loot = await loot.json()
   SkipSellList=[]
 
-  if not bSellHaveMasteryToken:
+  if not bSellMasteryTokenHero:
     for i in loot:
       bIsHeroShard = i["disenchantLootName"] == "CURRENCY_champion"
       bIsMasteryToken = "CHAMPION_TOKEN" in i["lootName"]
